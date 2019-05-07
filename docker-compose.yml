@@ -7,7 +7,9 @@ services:
       - "3306:3306"
     volumes:
       # DBデータを永続化
-      - ./docker/mariadb_data:/var/lib/mysql
+      - ./docker/mariadb/data:/var/lib/mysql
+      # 設定ファイルをマウント
+      - ./docker/mariadb/my.cnf:/etc/mysql/conf.d/my.cnf
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: gigantic
@@ -22,7 +24,8 @@ services:
     volumes:
       # ソース一式をドキュメントルートに配置
       - ./:/var/www/GiganticRanking
-      # apacheのログファイルをマウント(ホストPCで手軽に見れ流ようにする)
+      # apacheのログファイルをマウント
       - ./docker/logs:/var/log/httpd
       # apacheの設定ファイルをマウント
       - ./docker/httpd/00_virtualhost.conf:/etc/httpd/conf.d/00_virtualhost.conf
+    privileged: true
