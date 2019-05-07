@@ -1,0 +1,28 @@
+version: '2'
+services:
+  # DBサーバ
+  db01:
+    image: mariadb:10.1
+    ports:
+      - "3306:3306"
+    volumes:
+      # DBデータを永続化
+      - ./docker/mariadb_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: gigantic
+
+  # Webサーバ
+  web01:
+    build: ./docker/httpd
+    ports:
+      - "80:80"
+    links:
+      - "db01:db01"
+    volumes:
+      # ソース一式をドキュメントルートに配置
+      - ./:/var/www/GiganticRanking
+      # apacheのログファイルをマウント(ホストPCで手軽に見れ流ようにする)
+      - ./docker/logs:/var/log/httpd
+      # apacheの設定ファイルをマウント
+      - ./docker/httpd/00_virtualhost.conf:/etc/httpd/conf.d/00_virtualhost.conf
