@@ -95,5 +95,6 @@
                 </div>
             </div>
         </div>
+    <a href="{{route('login')}}">JMSログイン</a>
     </body>
 </html>
