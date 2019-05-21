@@ -11,13 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/{any?}', function () {
+    return view('index');
+})->where('any', '.+');
 
 // JMSログイン・ログアウト
 Route::get('login/jms', 'Auth\LoginController@redirectToProvider')->name('login');
