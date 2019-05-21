@@ -1,13 +1,13 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-// ページコンポーネントをインポートする
+// ページコンポーネントの読み込み
 import Ranking from './pages/Ranking.vue'
 import MyPage from './pages/MyPage.vue'
 
 // VueRouterプラグインを使用する
 // これによって<RouterView />コンポーネントなどを使うことができる
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 // パスとコンポーネントのマッピング
 const routes = [
@@ -27,6 +27,5 @@ const router = new VueRouter({
   routes
 });
 
-// VueRouterインスタンスをエクスポートする
-// app.jsでインポートするため
+// app.jsでインポートするため、VueRouterインスタンスをエクスポートする
 export default router

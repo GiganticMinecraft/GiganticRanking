@@ -16,6 +16,6 @@ Route::get('/{any?}', function () {
 })->where('any', '.+');
 
 // JMSログイン・ログアウト
-//Route::get('login/jms', 'Auth\LoginController@redirectToProvider')->name('login');
-//Route::get('login/jms/callback', 'Auth\LoginController@handleProviderCallback')->name('login_callback');
-//Route::get('logout/jms', 'Auth\LoginController@logout')->name('logout');
+Route::get('login/jms', 'Auth\LoginController@redirectToProvider')->name('login');
+Route::get('login/jms/callback', 'Auth\LoginController@handleProviderCallback')->name('login_callback');
+Route::get('logout/jms', 'Auth\LoginController@logout')->name('logout');
